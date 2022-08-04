@@ -1,4 +1,4 @@
-package kattis1;
+package kattis;
 
 import java.util.*;
 import java.io.*;

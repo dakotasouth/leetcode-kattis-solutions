@@ -1,8 +1,28 @@
- 
+package kattis;
+
 import java.util.*;
 import java.io.*;
 
 public class CountingStars {
+    public static void search(int i, int j, char[][] grid, boolean[][] seen){
+        if(i > 0 && grid[i-1][j] == '-' && seen[i-1][j] == false){
+            seen[i-1][j] = true;
+            search(i-1,j,grid,seen);
+        }
+        if(i < grid.length-1 && grid[i+1][j] == '-' && seen[i+1][j] == false){
+            seen[i+1][j] = true;
+            search(i+1,j,grid,seen);
+        }
+        if(j > 0 && grid[i][j-1] == '-' && seen[i][j-1] == false){
+            seen[i][j-1] = true;
+            search(i,j-1,grid,seen);
+        }
+        if(j < grid[i].length-1 && grid[i][j+1] == '-' && seen[i][j+1] == false){
+            seen[i][j+1] = true;
+            search(i,j+1,grid,seen);
+        }
+    }
+    
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int caseCount = 0;
@@ -10,41 +30,35 @@ public class CountingStars {
             caseCount++;
             int m = sc.nextInt();
             int n = sc.nextInt();
+            sc.nextLine();
             char[][] grid = new char[m][n];
-            boolean[][] seen = new boolean[m][n];
-
-            for (int i = 0; i < m; i++) {
-                char[] line = sc.nextLine().toCharArray();
-                for (int j = 0; j < n; j++) {
-                    System.out.println(j);
-                    grid[i][j] = line[j];
-                } 
-            }
-            //find every dash
-            //check if next to other dash
-            //check if those dashes have been checked
-            //if not, star count + 1
-            int starCount = 0;
-            char w = "-";
             
             for (int i = 0; i < m; i++) {
+                char[] line = sc.nextLine().toCharArray();
+                for (int j = 0; j < line.length; j++) {
+                    grid[i][j] = line[j];
+                }
+            }
+            /*
+            for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    System.out.print(i+" "+j);
-                    System.out.println(grid[i][j]);
-                    if(grid[i][j] == ){
-                        if(seen[i][j] == false && seen[i-1][j] == false && seen[i][j-1] == false && seen[i+1][j] == false && seen[i][j+1] == false){
-                            starCount++;
-                        }
+                    System.out.print(grid[i][j]);
+                }
+                System.out.println();
+            }
+*/
+            int starCount = 0;
+            boolean[][] seen = new boolean[m][n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if(grid[i][j] == '-' && seen[i][j] == false){
+                        starCount++;
                         seen[i][j] = true;
-                        if(seen[i-1][j] == false && grid[i-1][j].compareTo("-") == 0) seen[i-1][j] = true;
-                        if(seen[i+1][j] == false && grid[i+1][j].compareTo("-") == 0) seen[i+1][j] = true;
-                        if(seen[i][j-1] == false && grid[i][j-1].compareTo("-") == 0) seen[i][j-1] = true;
-                        if(seen[i][j+1] == false && grid[i][j+1].compareTo("-") == 0) seen[i][j+1] = true;
+                        search(i,j,grid,seen);
                     }
                 }
             }
-            System.out.println("Case "+caseCount+": "+starCount);
+            System.out.println("Case "+caseCount + ": "+ starCount);
         }
-        
     }
 }

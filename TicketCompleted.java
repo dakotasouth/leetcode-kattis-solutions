@@ -1,4 +1,4 @@
-package kattis1;
+package kattis;
 
 import java.util.*;
 import java.io.*;
@@ -43,7 +43,7 @@ public class TicketCompleted {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt(); int m = sc.nextInt();
         City[] rails = new City[n+1];
-        
+       
         //adds all nodes to list and nbr lists
         for (int i = 0; i < m; i++) {
             int a = sc.nextInt(); int b = sc.nextInt();
@@ -84,7 +84,7 @@ public class TicketCompleted {
         System.out.println(count / tot);
     }
 }
-//Test case 
+//Test case
 /*
 8 8
 1 6
