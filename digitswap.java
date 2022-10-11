@@ -1,9 +1,10 @@
 import java.util.*;
 
-public class triarea {
+public class digitswap {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println((sc.nextDouble() * sc.nextDouble()) / 2.0);
         
+        String[] line = sc.nextLine().split("");
+        System.out.println(line[1]+""+line[0]);
     }
 }
