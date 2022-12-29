@@ -1,4 +1,3 @@
-package kattis;
 import java.util.*;
 public class Bijele {
     public static void main(String[] args) {

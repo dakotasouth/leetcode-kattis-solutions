@@ -1,4 +1,3 @@
-package kattis;
 
 import java.math.RoundingMode;
 import java.util.*;
